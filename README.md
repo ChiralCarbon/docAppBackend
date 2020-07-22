@@ -1,2 +1,2 @@
-# ic_backend
-Backend for the Inner Circle App
+# docAppBackend
+Backend for the CCE doctor App
