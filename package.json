@@ -1,0 +1,42 @@
+{
+  "name": "ic-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "export NODE_ENV=develop && node ./src/bin/www",
+    "start-local": "export NODE_ENV=localhost DEBUG=ic-backend:server && nodemon ./bin/www"
+  },
+  "dependencies": {
+    "@netflix/nerror": "^1.1.3",
+    "@sendgrid/mail": "^7.1.0",
+    "aws-sdk": "^2.673.0",
+    "bcrypt": "^4.0.1",
+    "bunyan": "^1.8.12",
+    "bunyan-format": "^0.2.1",
+    "bunyan-loggly": "^1.4.2",
+    "busboy": "^0.3.1",
+    "config": "^3.3.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.0",
+    "http-status": "^1.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "mime": "^2.4.5",
+    "moment": "^2.25.0",
+    "mongoose": "^5.9.10",
+    "morgan": "~1.9.0",
+    "ms": "^2.1.2",
+    "passport": "^0.4.1",
+    "passport-google-token": "^0.1.2",
+    "passport-jwt": "^4.0.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "serverless-http": "^2.3.2",
+    "swagger-jsdoc": "^4.0.0",
+    "uuidv4": "^6.0.8",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {}
+}

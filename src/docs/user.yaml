@@ -1,0 +1,120 @@
+definitions:
+    UserSchema:
+        properties:
+            name:
+                type: string
+            email:
+                type: string
+                format: email
+            status:
+                type: string
+                enum:
+                    - "enabled"
+                    - "disabled"
+                    - "pendingEmailVerification"
+                    - "onboarding"
+            username:
+                type: string
+    BadRequestResponse:
+        properties:
+            error:
+                type: string
+                description: A message describing the error
+    UpdateUsername:
+        properties:
+            username:
+                type: string
+
+tags:
+    - name: 'User Auth APIs'
+      description: 'API definitions for all user authenticated end points'
+    - name: 'User Open APIs'
+      description: "API definitions for all open user end points"
+paths:
+    /me/user:        
+        get:
+            tags:
+                - 'User Auth APIs'
+            summary: 'Get current user object'
+            description: 'Gets the current user object'
+            operationId: 'authUserGet'
+            parameters:
+                - in: header
+                  name: Authentication
+                  type: BearerToken
+                  required: true
+            consumes:
+                - 'application/json'
+            produces:
+                - 'application/json'
+            responses:
+                200:
+                    description: 'Responds with the user object'
+                    schema:
+                        properties:
+                            user:
+                                type: object
+                                $ref: '#/definitions/UserSchema'
+                401:
+                    description: 'Unauthorized'
+                    schema:
+                        $ref: '#/definitions/BadRequestResponse'
+        put:
+            tags:
+                - 'User Auth APIs'
+            summary: 'Update the user object, just updating the username for now'
+            description: 'Update the user object, just updating the username for now'
+            operationId: 'authUserPut'
+            parameters:
+                - in: header
+                  name: Authentication
+                  type: BearerToken
+                  required: true
+                - name: 'body'
+                  in: 'body'
+                  required: true
+                  schema:
+                    $ref: '#/definitions/UpdateUsername'
+            consumes:
+                - 'application/json'
+            produces:
+                - 'application/json'
+            responses:
+                200:
+                    description: 'Responds with the updated user object'
+                    schema:
+                        properties:
+                            user:
+                                type: object
+                                $ref: '#/definitions/UserSchema'
+                401:
+                    description: 'Unauthorized'
+                    schema:
+                        $ref: '#/definitions/BadRequestResponse'
+    /user/username/available:
+        get:
+            tags:
+                - 'User Open APIs'
+            summary: 'Check if a username is available'
+            description: 'Checks if the username is available, username is passed as a query parameter. The search is case insensitive, all queries are converted to lowercase internally'
+            operationId: "openUserGetUsername"
+            parameters:
+                - in: query
+                  name: q
+                  type: string
+                  description: The username to check for availability
+            consumes:
+                - application/json
+            produces:
+                - application/json
+            responses:
+                200:
+                    description: "When a username check has been successfull executed. Responds with the username, and whether its available or not"
+                    schema:
+                        properties:
+                            username:
+                                type: string
+                                description: "The lowercase username searched for"
+                            isAvailable:
+                                type: boolean
+                                description: "Whether the username is available or not."

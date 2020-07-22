@@ -1,0 +1,23 @@
+service: fandome-backend
+# Important: If the service name is changed, the respective iAm policy will need to be changed.
+frameworkVersion: '>=1.1.0 <2.0.0'
+
+plugins:
+    - serverless-offline
+
+provider:
+    name: aws
+    runtime: nodejs10.x
+    stage: 'dev'
+    region: us-east-1
+    environment:
+        NODE_ENV: dev
+    http:
+        cors: true
+
+functions:
+    app:
+        handler: src/app.handler
+        events:
+            - http: ANY /
+            - http: 'ANY {proxy+}'

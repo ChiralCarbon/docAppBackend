@@ -1,0 +1,21 @@
+{
+    "http": "https://",
+    "default": {
+        "auth": {
+            "saltRounds": 10
+        }
+    },
+    "sendGrid": {
+        "API_KEY": "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"
+    },
+    "uploads": {
+        "maxFileSize": 10485760
+    },
+    "AWS_ACCESS_KEY_ID": "AKIAX73IXWYLKJZGVFPN",
+    "AWS_SECRET_ACCESS_KEY": "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",
+    "rebrandly": {
+        "API_KEY":"f476980ccc5b4ef9adf1f94551b49286",
+        "WORKSPACE_ID":"06a90548df124cfa8a4ec21b286c43fd",
+        "shorten_url":"https://api.rebrandly.com/v1/links"
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "hostname": "ic-backend.herokuapp.com",
+    "jwt": {
+        "secret": "ffaf37522a424f7a834262fcd3fc77fc",
+        "expire_in": {
+            "value": "1y",
+            "prefix": "1",
+            "base": "y",
+            "_comment": "Prefix and base values are used to add the duration to the current time via momentjs."
+        },
+        "issuer": "icLocal"
+    },
+    "mongoDb": {
+        "uri": "mongodb+srv://icAdmin:Aaj41Q8JqMFdYAxr@cluster0-mqsds.mongodb.net/test?retryWrites=true&w=majority"
+    },
+    "authentication": {
+        "google": {
+            "client_id": "175622580849-0vrai5vd95sabhi5a1va2somgsqcaa0v.apps.googleusercontent.com",
+            "client_secret": "kfLFxMws0ZK0-NQxWcZg_p7X",
+            "callback_url": "https://ic-backend.herokuapp.com/auth/google/callback"
+        }
+    },
+    "crypto": {
+        "aes192": {
+            "password": "ca981be48e90867604588e7"
+        }
+    },
+    "clients": {
+        "web": {
+            "hostname": "ic-frontend.herokuapp.com"
+        }
+    },
+    "razorpay": {
+        "orders": "https://api.razorpay.com/v1/orders",
+        "payments": "https://api.razorpay.com/v1/payments",
+        "api_key": "rzp_test_lqGygHlCklwBk4",  
+        "api_secret": "slmfdGwhEQnk8Fa1M031kxPu" 
+    }, 
+    "aws": {
+        "s3": {
+            "default": {
+                "bucket": "fandome-public-assets-dev"
+            }
+        }
+    },
+    "loggly": {
+        "credentials": {
+            "token": "92efb5e7-cc65-4e04-ba2a-d15936358962",
+            "subdomain": "fandome",
+            "tags": [
+                "ic-backend-dev"
+            ]
+        },
+        "bufferLength": 20,
+        "bufferTimeout": 300000
+    },
+    "log_level": "info"
+}

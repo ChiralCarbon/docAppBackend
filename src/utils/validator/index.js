@@ -1,0 +1,1 @@
+exports.appValidator = require('./appValidator')

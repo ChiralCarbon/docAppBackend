@@ -1,0 +1,124 @@
+definitions:
+    SignUpEmailRequest:
+        properties:
+            email:
+                type: string
+                format: email
+            password:
+                type: string
+                format: password
+            name:
+                type: string
+                
+        required:
+            - email
+            - password
+            - name
+
+    SignUpEmailResponse:
+        properties:
+            onboarding:
+                type: object
+                properties:
+                    screen:
+                        type: string
+                        enum:
+                            - emailConfirmation
+    LoginEmailRequest:
+        properties:
+            email:
+                type: string
+                format: email
+            password:
+                type: string
+                format: password
+        required:
+            - email
+            - password
+    
+    UserSchema:
+        properties:
+            name:
+                type: string
+            email:
+                type: string
+                format: email
+            status:
+                type: string
+                enum:
+                    - "enabled"
+                    - "disabled"
+                    - "pendingEmailVerification"
+                    - "onboarding"
+            username:
+                type: string
+    LoginResponse:
+        properties:
+            user:
+                type: object
+                $ref: "#/definitions/UserSchema"
+            accessToken:
+                type: string
+    BadRequestResponse:
+        properties:
+            error:
+                type: string
+                description: A message describing the error
+
+
+tags:
+    - name: 'Authentication'
+      description: 'API definitions for Authentication endpoints'
+paths:
+    /signup:
+        parameters:
+            - name: 'body'
+              in: 'body'
+              required: true
+              schema:
+                  $ref: '#/definitions/SignUpEmailRequest'
+        post:
+            tags:
+                - 'Authentication'
+            summary: 'Sign Up via email'
+            description: 'Sign up a creator via email to Fandome'
+            operationId: 'signUp'
+            consumes:
+                - 'application/json'
+            produces:
+                - 'application/json'
+            responses:
+                200:
+                    description: 'Success'
+                    schema:
+                        $ref: '#/definitions/SignUpEmailResponse'
+                400:
+                    description: 'Unauthorized'
+                    schema:
+                        $ref: '#/definitions/BadRequestResponse'
+    /login:
+        parameters:
+            - name: 'body'
+              in: 'body'
+              required: true
+              schema:
+                $ref: '#/definitions/LoginEmailRequest'
+        post:
+            tags:
+                - 'Authentication'
+            summary: 'Login via email'
+            description: 'Login via email to Fandome'
+            operationId: 'logIn'
+            consumes:
+                - 'application/json'
+            produces:
+                - 'application/json'
+            responses:
+                200:
+                    description: 'Success'
+                    schema:
+                        $ref: '#/definitions/LoginResponse'
+                401:
+                    description: 'Unauthorized'
+                    schema:
+                        $ref: '#/definitions/BadRequestResponse'
